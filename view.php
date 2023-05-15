@@ -15,12 +15,7 @@ try{
   
   $DBcon = new PDO("mysql:host=$DBhost;dbname=$DBname",$DBuser,$DBpass);
   $DBcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-}catch(PDOException $ex){
-  
-  die($ex->getMessage());
-}
-?>
+  ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -52,21 +47,6 @@ try{
           <?php
           if (mysqli_num_rows(mysqli_query($Con, "SELECT * FROM `repository`")) > 0) {
 
-            $get_files = mysqli_query($Con, "SELECT * FROM `repository` ORDER BY id DESC");
+            $get_files = mysqli_query($Con, "SELECT * FROM `repository`);
             while($show_files = mysqli_fetch_assoc($get_files)){
-              echo "<p>" . $show_files['file'] . "</p>";
-            }
-
-          }else{
-          ?>
-          <p>There are no files in your repository.</p>
-        <?php } ?>
-        <hr>
-          <p>
-            <a href="repo.php">Upload files</a>
-          </p>
-        </div>
-      </form>
-    </div>
-  </body>
-</html>
+              echo "<p>" . $show_files['file'] . "</p>" 
