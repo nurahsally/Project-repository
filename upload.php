@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $hostname = "localhost";
 $database = "digital_library";
 $username = "digital_library";
