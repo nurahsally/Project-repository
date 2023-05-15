@@ -88,29 +88,4 @@ if(isset($_POST["submit_data"])) {
                 $query  = "INSERT INTO `repository` (`id`, `title`, `creator`, `date_created`, `subject`, `format`, `language`, `rights`, `description`, `file`) VALUES (NULL, '$title', '$creator', '$date', '$subject', '$format', '$language', '$rights', '$description', '$file_name')";
                 $stmt   = $DBcon->prepare($query);
 
-                try {
-                    if (move_uploaded_file($file_tmp, $target_dir.basename($file_name))) {
-                        $stmt->execute(array());
-                        $DBcon->commit();
-                        $_SESSION['info'] = "The file ". basename($file_name). " has been uploaded.";
-                        header("location:repo.php");
-                    } else {
-                        $DBcon->rollback();
-                        $_SESSION['err'] = "Sorry, there was an error uploading your file.";
-                        header("location:repo.php");
-                    }
-                  } catch (Exception $e) {
-                    $DBcon->rollback();
-                    throw $e;
-                        $_SESSION['err'] = "Sorry, there was an error uploading your file.";
-                        header("location:repo.php");
-                  }
-                
-            }
-
-}else{
-    $_SESSION['err'] = "Sorry, there was an error uploading your file.";
-    header("location:repo.php");
-}
-
-?>
+               
